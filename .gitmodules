@@ -78,3 +78,6 @@
 	url = https://github.com/matomo-org/matomo-icons.git
 
 # Note: do not add new plugin submodules here, but a few lines above
+[submodule "plugins/BricTheme/icons"]
+	path = plugins/BricTheme/icons
+	url = https://github.com/matomo-org/matomo-icons.git

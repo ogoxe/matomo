@@ -1,0 +1,6 @@
+{
+    "name": "BricTheme",
+    "description": "Morpheus override theme with Bric UI.",
+    "theme": true,
+    "stylesheet": "stylesheets/main.less"
+}
