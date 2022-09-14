@@ -22,7 +22,7 @@
 
     {% if idSite is defined %}piwik.idSite = "{{ idSite }}";{% endif %}
 
-    piwik.requiresPasswordConfirmation = {{ userRequiresPasswordConfirmation ? 'true' : 'false' }};
+    {# piwik.requiresPasswordConfirmation = {{ userRequiresPasswordConfirmation ? 'true' : 'false' }}; #}
 
     {% if siteName is defined %}
     // NOTE: siteName is currently considered deprecated, use piwik.currentSiteName instead, which will not contain HTML entities
