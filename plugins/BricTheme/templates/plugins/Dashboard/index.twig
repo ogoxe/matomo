@@ -3,6 +3,8 @@
     {% include "@CoreHome/_periodSelect.twig" %}
     {{ postEvent("Template.nextToCalendar") }}
     {% render dashboardSettingsControl %}
+
+    {# ajoute le test si dashboardId == 1 #}
     {% if dashboards|length and dashboardId == 1 %}
     <div id="Dashboard" class="piwikTopControl borderedControl piwikSelector">
         <ul>
