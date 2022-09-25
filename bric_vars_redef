@@ -1,0 +1,11 @@
+/* for adBlocker */
+if (isset($_GET['_bric'])) {
+		$_GET['action_name'] = $_GET['_bric'];
+		unset($_GET['_bric']);
+}
+if (isset($_GET['_bric_id'])) {
+		$_GET['idsite'] = $_GET['_bric_id'];
+		unset($_GET['_bric_id']);
+}
+
+include PIWIK_DOCUMENT_ROOT.'/piwik.php';
