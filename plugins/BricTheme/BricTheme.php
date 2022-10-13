@@ -23,8 +23,8 @@ class BricTheme extends \Piwik\Plugin
         $vars->colorLink = '#2c3b8d';
         $vars->colorBrand = '#2c3b8d';
         $vars->colorHeaderBackground = '#2c3b8d';
-        $vars->colorMenuContrastTextActive = '#2c3b8d';
-        $vars->colorBackgroundBase = '#eff1fa';
+        $vars->colorMenuContrastTextActive = '#2c3b8d'; // primary-color500
+        $vars->colorBackgroundBase = '#f3f5f7'; // primary-color100
         $vars->colorBaseSeries = '#b2002d';
     }
 }
