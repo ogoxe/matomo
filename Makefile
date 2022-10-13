@@ -15,4 +15,6 @@ deploy-theme: ## Construit et déploie le thème sur le VPS
 		-e "ssh -p 276" \
 		$(local_path)/plugins/BricTheme/ \
 		deploy@vps1.server.bric-network.com:~/vhosts/$(matomo_host)/plugins/BricTheme/
+
+	scp bric.js bric.php bric-deploy:/var/www/vhosts/$(matomo_host)
 	@echo "go : https://$(matomo_host)"
