@@ -503,7 +503,7 @@ class Model
         $token = $this->hashTokenAuth($tokenAuth);
         if (!empty($token)) {
             $db = $this->getDb();
-            return $db->fetchRow("SELECT * FROM " . $this->userTable . " WHERE `invite_token` = ?", $token);
+            return $db->fetchRow("SELECT * FROM " . $this->userTable . " WHERE `invite_token` = ? or `invite_link_token` = ?", [$token ,$token]);
         }
     }
 
@@ -551,6 +551,14 @@ class Model
         ]);
     }
 
+    public function attachInviteLinkToken($userLogin, $token, $expiryInDays = 7)
+    {
+        $this->updateUserFields($userLogin, [
+            'invite_link_token' => $this->hashTokenAuth($token),
+            'invite_expired_at' => Date::now()->addDay($expiryInDays)->getDatetime(),
+        ]);
+    }
+
     public function setSuperUserAccess($userLogin, $hasSuperUserAccess)
     {
         $this->updateUserFields($userLogin, array(
@@ -579,11 +587,6 @@ class Model
         $db->query(sprintf('UPDATE `%s` SET %s WHERE `login` = ?', $this->userTable, implode(', ', $set)), $bind);
     }
 
-    /**
-     * Note that this returns the token_auth which is as private as the password!
-     *
-     * @return array[] containing login, email and token_auth
-     */
     public function getUsersHavingSuperUserAccess()
     {
         $db = $this->getDb();

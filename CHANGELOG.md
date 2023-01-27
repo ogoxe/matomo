@@ -4,6 +4,16 @@ This is the Developer Changelog for Matomo platform developers. All changes in o
 
 The Product Changelog at **[matomo.org/changelog](https://matomo.org/changelog)** lets you see more details about any Matomo release, such as the list of new guides and FAQs, security fixes, and links to all closed issues. 
 
+## Matomo 4.13.1
+
+### New config.ini.php settings
+* Three new config settings `ssl_disallow_self_signed` ,`ssl_verify_peer`, `ssl_verify_peer_name` under [mail] to allow modifying the SSL handling in SMTP request.
+
+## Matomo 4.13.0
+
+### New config.ini.php settings
+* A new config setting `enable_opcache_reset` defaulting to `1`. Provides a configuration switch for `opcache_reset` when general caches are cleared. This may be useful for multi-tenant installations that would rather manage opcache resets by themselves. This could also be used by scripts to temporarily switch off opcache resets.
+
 ## Matomo 4.12.0
 
 ### Breaking Changes
@@ -11,11 +21,11 @@ The Product Changelog at **[matomo.org/changelog](https://matomo.org/changelog)*
 * When removing a user through the `UsersManager.deleteUser` API using a session authentication, a new parameter `passwordConfirmation` needs to be sent along with the request containing the current password of the user issuing the API request.
 * When adding a user through the `UsersManager.addUser` API using a session authentication, a new parameter `passwordConfirmation` needs to be sent along with the request containing the current password of the user issuing the API request.
 * When inviting a user through the `UsersManager.inviteUser` API using a session authentication, a new parameter `passwordConfirmation` needs to be sent along with the request containing the current password of the user issuing the API request.
-* When removing a site through the `SitesManager.deleteSite` API using a session authentication, a new parameter `passwordConfirmation` needs to be sent along with the request containing the current password of the user issuing the API request.
 
 ### New PHP events
 
 * Added new event `Login.userRequiresPasswordConfirmation`, which can be used in login plugins to circumvent the password confirmation in UI and for certain API methods
+* When removing a site through the `SitesManager.deleteSite` API using a session authentication, a new parameter `passwordConfirmation` needs to be sent along with the request containing the current password of the user issuing the API request.
 
 ### New Privacy Opt-Out Options
 

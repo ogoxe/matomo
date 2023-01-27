@@ -201,6 +201,12 @@ describe("UIIntegrationTest", function () { // TODO: Rename to Piwik?
             expect(await page.screenshot({ fullPage: true })).to.matchImage('fatal_error_safemode');
         });
 
+        it('should the error page instead of safemode when error while rendering view is not a twig error', async function() {
+
+            await page.goto("?" + generalParams + "&module=Widgetize&action=iframe&moduleToWidgetize=Dashboard&actionToWidgetize=index&segment=userid%3D%3D35745");
+            expect(await page.screenshot({ fullPage: true })).to.matchImage('view_render_error_user_input');
+        });
+
         // not logged in
         it('should show login form for non super user if invalid idsite given', async function() {
             testEnvironment.testUseMockAuth = 0;
@@ -368,7 +374,11 @@ describe("UIIntegrationTest", function () { // TODO: Rename to Piwik?
             await page.goto("?" + urlBaseGeneric + idSite3Params + "#?" + idSite3Params + "&category=General_Visitors&subcategory=General_RealTime");
             await page.mouse.move(-10, -10);
 
-            pageWrap = await page.$('.pageWrap');
+            pageWrap = await page.$('#root');
+            await page.evaluate(function() {
+              // hide navBar to skip random failed
+              $('#secondNavBar').hide();
+            });
             expect(await pageWrap.screenshot()).to.matchImage('visitors_realtime_visits');
         });
     });
